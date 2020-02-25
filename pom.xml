@@ -5,17 +5,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Login</name>
   <url>http://maven.apache.org</url>
-<<<<<<< HEAD
-  <properties>
+
+ <properties>
    <maven.compiler.source>1.8</maven.compiler.source>
    <maven.compiler.target>1.8</maven.compiler.target>
 </properties>
-=======
-	<properties>
-   		<maven.compiler.source>1.8</maven.compiler.source>
-   		<maven.compiler.target>1.8</maven.compiler.target>
-	</properties>
->>>>>>> 135648e342a93f0b7f5241f7b30749a065a5bbb1
+
+
   <!-- https://mvnrepository.com/artifact/junit/junit -->
 	<dependencies>
 	<dependency>
@@ -25,9 +21,5 @@
 	    <scope>test</scope>
 	</dependency>
   </dependencies>
-<<<<<<< HEAD
+</project>
 
-</project>
-=======
-</project>
->>>>>>> 135648e342a93f0b7f5241f7b30749a065a5bbb1

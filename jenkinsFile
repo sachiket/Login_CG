@@ -3,41 +3,19 @@ pipeline {
 	agent any
 	tools {
 		maven 'maven_3_6_3'
-<<<<<<< HEAD
-		
-=======
->>>>>>> 135648e342a93f0b7f5241f7b30749a065a5bbb1
 	}
 	stages {
 		stage ('Compile Stage'){
 			steps{
-<<<<<<< HEAD
-				sh 'mvn clean compile'	
-=======
 				bat 'mvn clean compile'	
->>>>>>> 135648e342a93f0b7f5241f7b30749a065a5bbb1
 			}	
 		}
 		stage ('Testing Stage'){
 			steps{
-<<<<<<< HEAD
-				sh 'mvn test'
+				bat 'mvn test'	
 			}	
 		}
-		
-		stage ('Deployment Stage'){
-			steps{
-				sh 'mvn deploy'
-			}	
-		}
-	
-	}
+	}	
 }
-=======
-				bat 'mvn test'
-			}	
-		}
-		
-	}
-}
->>>>>>> 135648e342a93f0b7f5241f7b30749a065a5bbb1
+
+
