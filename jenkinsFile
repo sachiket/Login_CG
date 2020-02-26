@@ -15,6 +15,11 @@ pipeline {
 				bat 'mvn test'	
 			}	
 		}
+		stage ('Sonar deployment Stage'){
+			steps{
+				bat 'mvn sonar:sonar'	
+			}	
+		}
 	}	
 }
 
