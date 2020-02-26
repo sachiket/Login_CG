@@ -9,7 +9,7 @@ import com.cg.iter.LoginService.LoginService;
 import com.cg.iter.LoginService.LoginServiceImp;
 import com.cg.iter.util.Validator;
 
-public class LoginMain**{
+public class LoginMain{
 	LoginService logService;
 	Validator valid = new Validator();
 	public LoginMain() {
