@@ -17,13 +17,15 @@ public class UserDaoImp implements UserDao {
 		userDao.put("test2",new User("test2","8955321475","test2@gmail.com","test2","test2"));
 		adminDao.put("admin1",new User("admin1","7854213698","admin1@gmail.com","","admin1"));
 		adminDao.put("admin2",new User("admin2","9000213698","admin2@gmail.com","","admin2"));
-		//userDao.put("Admin",new User("test2","9002548763","admin2@gmail.com","admin2","admin2"));
 	}
 
 	@Override
 	public boolean register(User user) throws UserCreateException {
-		User newUser = userDao.put(user.getUserID(), user);
-		if(newUser==null) {
+		
+		userDao.put(user.getUserID(), user);
+		User result = userDao.get(user.getUserID());
+		//System.out.println(result);
+		if(result==null) {
 			throw new UserCreateException("Failed to create an account!");
 		}
 		return true;

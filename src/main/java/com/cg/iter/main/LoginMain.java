@@ -15,13 +15,12 @@ public class LoginMain {
 	Validator valid = new Validator();
 	public LoginMain() {
 		Scanner sc = new Scanner(System.in);
-		UserDao dao = new UserDaoImp();
-		
-		logService = new LoginServiceImp(dao);
+		logService = new LoginServiceImp();
 		int choice = 0;
 		while(true) {
 			choice = getChoice(sc);
 			sc.nextLine();
+			//i++;
 			switch (choice) {
 			case 1:
 				loginScreen(logService,sc);
@@ -87,12 +86,14 @@ public class LoginMain {
 					//exception to check if the account is successfully created or not
 					
 					try {
+						//System.out.println("main: "+user);
 						logService.register(user);
+						System.out.println("Congratulation!!!  You have successfully created your account!");
 					} catch (UserCreateException e) {
 						System.out.println(e.getMessage());
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
-					System.out.println("Congratulation!!!  You have successfully created your account!");
+					
 				}
 			}
 		}

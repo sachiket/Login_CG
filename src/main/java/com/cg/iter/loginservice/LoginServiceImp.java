@@ -13,12 +13,17 @@ import com.cg.iter.util.Validator;
 
 
 public class LoginServiceImp implements LoginService {
-	private UserDao dao;
+	private UserDao dao  = new UserDaoImp();;
+	String temp;
 	Validator valid = new Validator(); 
 
+ 
+	public LoginServiceImp() {
+	}
 
-	public LoginServiceImp(UserDao dao) {
-		this.dao = dao;
+	public LoginServiceImp(String temp) {
+		this.temp=temp;
+		System.out.println(dao.getDao());
 	}
 
 	@Override
@@ -101,7 +106,8 @@ public class LoginServiceImp implements LoginService {
 
 	@Override
 	public boolean register(User user) throws UserCreateException {
-		dao = new UserDaoImp();
+		//dao = new UserDaoImp();
+		//System.out.println("service" +user);
 		return dao.register(user);
 		
 	}
