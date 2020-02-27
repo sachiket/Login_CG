@@ -13,7 +13,7 @@ import com.cg.iter.util.Validator;
 public class LoginMain {
 	LoginService logService;
 	Validator valid = new Validator();
-	public LoginMain() {
+	public LoginMain**() {
 		Scanner sc = new Scanner(System.in);
 		logService = new LoginServiceImp();
 		int choice = 0;
