@@ -1,4 +1,4 @@
-package com.cg.iter.LoginService;
+package com.cg.iter.loginservice;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 
 import com.cg.iter.Dao.UserDao;
 import com.cg.iter.Dao.UserDaoImp;
-import com.cg.iter.Exception.UserCreateException;
-import com.cg.iter.Exception.userNotFoundException;
+import com.cg.iter.exception.UserCreateException;
+import com.cg.iter.exception.userNotFoundException;
 import com.cg.iter.main.User;
 import com.cg.iter.util.Validator;
 
@@ -30,13 +30,6 @@ public class LoginServiceImp implements LoginService {
 		System.out.println("Incorrect UserID or Password!");
 		
 		return false;
-	}
-
-
-	@Override
-	public boolean addUser(User user) throws UserCreateException {
-		dao = new UserDaoImp();
-		return dao.addUser(user);
 	}
 
 
@@ -98,6 +91,19 @@ public class LoginServiceImp implements LoginService {
 	public boolean checkUseridExist(String userID) {
 		// TODO Auto-generated method stub
 		return dao.checkUserID(userID);
+	}
+
+	@Override
+	public boolean validateAdminUseridAndPassword(String adminID, String password) {
+		// TODO Auto-generated method stub
+		return dao.validateAdminUseridAndPassword(adminID,password);
+	}
+
+	@Override
+	public boolean register(User user) throws UserCreateException {
+		dao = new UserDaoImp();
+		return dao.register(user);
+		
 	}
 
 

@@ -1,8 +1,8 @@
-package com.cg.iter.LoginService;
+package com.cg.iter.loginservice;
 
 import java.util.Map;
 
-import com.cg.iter.Exception.UserCreateException;
+import com.cg.iter.exception.UserCreateException;
 import com.cg.iter.main.User;
 
 public interface LoginService {
@@ -16,7 +16,7 @@ public interface LoginService {
 	//check if the email already exists 
 	boolean validateUseridAndPassword(String userID, String password);
 	//create a new user with again validation check
-	boolean addUser(User user) throws UserCreateException;
+	boolean register(User user) throws UserCreateException;
 	Map<String,User> getDao();
 	
 	
@@ -29,6 +29,7 @@ public interface LoginService {
 	boolean checkCorrectMobileNumber(String userID,String phoneno);
 	String forgetPassword(String userID,String newPassword);
 	boolean checkUseridExist(String userID);
+	boolean validateAdminUseridAndPassword(String adminID, String password);
 	
 	
 	

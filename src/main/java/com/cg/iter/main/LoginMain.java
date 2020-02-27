@@ -2,14 +2,15 @@ package com.cg.iter.main;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import com.cg.iter.Dao.UserDao;
 import com.cg.iter.Dao.UserDaoImp;
-import com.cg.iter.Exception.UserCreateException;
-import com.cg.iter.LoginService.LoginService;
-import com.cg.iter.LoginService.LoginServiceImp;
+import com.cg.iter.exception.UserCreateException;
+import com.cg.iter.loginservice.LoginService;
+import com.cg.iter.loginservice.LoginServiceImp;
 import com.cg.iter.util.Validator;
 
-public class LoginMain{
+public class LoginMain {
 	LoginService logService;
 	Validator valid = new Validator();
 	public LoginMain() {
@@ -26,13 +27,13 @@ public class LoginMain{
 				loginScreen(logService,sc);
 				break;
 			case 2:
-				forgetPasswordScreen(logService,sc);
+				adminloginScreen(logService,sc);
 				break;
 			case 3:
-				AddUserScreen(logService,sc);
+				forgetPasswordScreen(logService,sc);
 				break;
 			case 4:
-				System.exit(0);
+				registerScreen(logService,sc);
 				break;
 
 			default:
@@ -45,7 +46,28 @@ public class LoginMain{
 	
 	
 	
-	private void AddUserScreen(LoginService logService, Scanner sc) {
+	private void adminloginScreen(LoginService logService, Scanner sc) {
+		boolean status = false;
+		//System.out.println(logService.getDao());
+		System.out.println("Enter Admin ID");
+		String AdminID = sc.nextLine();		
+		System.out.println("Enter Your Password");
+		String password = sc.nextLine();
+		if(logService.validateAdminUseridAndPassword(AdminID, password)) {
+			status = true;
+		}
+			
+		if(status==true) {
+		System.out.println("Sucessfully Logged in as Admin!");
+		System.exit(0);
+		}
+		return;
+		
+	}
+
+
+
+	private void registerScreen(LoginService logService, Scanner sc) {
 		
 		System.out.println("Enter your name :" );
 		String name = sc.nextLine();
@@ -65,7 +87,7 @@ public class LoginMain{
 					//exception to check if the account is successfully created or not
 					
 					try {
-						logService.addUser(user);
+						logService.register(user);
 					} catch (UserCreateException e) {
 						System.out.println(e.getMessage());
 						e.printStackTrace();
@@ -148,8 +170,9 @@ public class LoginMain{
 		System.out.println("******* ENTER YOU CHOICE ********");
 		System.out.println("+-------------------------------+");
 		System.out.println("|       1. Login                |");
-		System.out.println("|       2. Forget Password      |");
-		System.out.println("|       3. Register             |");
+		System.out.println("|       2. Admin Login	        |");
+		System.out.println("|       3. Forget Password      |");
+		System.out.println("|       4. Register             |");
 		//System.out.println("|       4. Exit System          |");
 		System.out.println("+-------------------------------+");
 		System.out.println();

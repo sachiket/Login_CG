@@ -1,4 +1,4 @@
-package com.cg.iter.Exception;
+package com.cg.iter.exception;
 
 public class UserCreateException extends Exception {
 

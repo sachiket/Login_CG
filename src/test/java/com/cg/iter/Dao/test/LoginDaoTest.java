@@ -10,8 +10,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.cg.iter.Dao.UserDaoImp;
-import com.cg.iter.Exception.UserCreateException;
-import com.cg.iter.Exception.userNotFoundException;
+import com.cg.iter.exception.UserCreateException;
+import com.cg.iter.exception.userNotFoundException;
 import com.cg.iter.main.User;
 
 public class LoginDaoTest {
@@ -30,7 +30,7 @@ public class LoginDaoTest {
 	public void testAddUser() {
 		// sucess = false;
 		try {
-			boolean sucess = uDao.addUser(new User("test3","9638527415","test1@gmail.com","Test@12345","test3"));
+			boolean sucess = uDao.register(new User("test3","9638527415","test1@gmail.com","Test@12345","test3"));
 			assertTrue(sucess);
 		} catch (UserCreateException e) {
 			System.out.println(e.getMessage());
