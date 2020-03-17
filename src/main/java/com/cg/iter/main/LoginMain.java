@@ -3,8 +3,6 @@ package com.cg.iter.main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.cg.iter.Dao.UserDao;
-import com.cg.iter.Dao.UserDaoImp;
 import com.cg.iter.exception.UserCreateException;
 import com.cg.iter.loginservice.LoginService;
 import com.cg.iter.loginservice.LoginServiceImp;

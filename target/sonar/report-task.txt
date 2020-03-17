@@ -1,6 +1,0 @@
-projectKey=com.cg.login:Login_CG
-serverUrl=http://localhost:9000
-serverVersion=7.1.0.11001
-dashboardUrl=http://localhost:9000/dashboard/index/com.cg.login:Login_CG
-ceTaskId=AXCBW2C7hjiqRWkIVU1F
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXCBW2C7hjiqRWkIVU1F
