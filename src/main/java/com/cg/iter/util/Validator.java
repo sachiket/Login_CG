@@ -1,9 +1,12 @@
 package com.cg.iter.util;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
+	Scanner scan = new Scanner(System.in);
 	
 	public boolean checkMail(String email) {
 		//check if the email entered is a valid email or not
@@ -18,7 +21,22 @@ public class Validator {
 		return false;
 		
 	}
-	
+	@SuppressWarnings("finally")
+	public int checkChoice() {
+		String choice = "";
+		int choiceInt = 0;
+		while((choice=scan.nextLine().trim()).length()==0 ){
+			System.out.println("Please enter your choice!");
+		}
+		try {
+			choiceInt = Integer.parseInt(choice);
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid input!! Please enter numbers only!");
+		}finally {
+			return choiceInt;
+		}
+		
+	}
 	
 	public boolean checkPassword(String password) {
 		String passCheck[]= new String[4];

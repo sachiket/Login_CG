@@ -1,6 +1,7 @@
 package com.cg.iter.main;
-import java.util.InputMismatchException;
 import java.util.Scanner;
+
+
 import com.cg.iter.exception.UserCreateException;
 import com.cg.iter.loginservice.LoginService;
 import com.cg.iter.loginservice.LoginServiceImp;
@@ -14,7 +15,6 @@ public class LoginMain {
 		int choice = 0;
 		while(true) {
 			choice = getChoice(sc);
-			sc.nextLine();
 			//i++;
 			switch (choice) {
 			case 1:
@@ -31,7 +31,7 @@ public class LoginMain {
 				break;
 
 			default:
-				System.out.println("Choose 1 to 4 only");
+				System.out.println("Invalid input!! Please enter number between 1 to 4 only!");
 				break;
 			}
 		}
@@ -101,37 +101,44 @@ public class LoginMain {
 
 		System.out.println("Please enter your userID :");
 		String userID = sc.nextLine();
-		System.out.println("Please enter your email : ");
-		String email = sc.nextLine();
-		//check email 
-		if(valid.checkMail(email) && logService.checkUseridExist(userID) && logService.checkEmailExist(userID,email)) {
-			
-			System.out.println("Enter user name : ");
-			String name = sc.nextLine();
-			System.out.println("Enter mobile number :");
-			String phoneno = sc.nextLine();
-			
-			if(logService.checkCorrectMobileNumber(userID, phoneno) && logService.checkCorrectName(userID, name)) {
-				System.out.println("Please enter new password");
-				String newPass = sc.nextLine();
-				if(valid.checkPassword(newPass)) {
-					System.out.println("Enter password again");
-					String checkPass = sc.nextLine();
-					
-					if(newPass.equals(checkPass)) {
-						System.out.println(logService.forgetPassword(userID,newPass));
-					}
-					
-					else {
-						System.out.println("Password not matched");
+		if(logService.checkUseridExist(userID)) {
+			System.out.println("Please enter your email : ");
+			String email = sc.nextLine();
+			//check email 
+			if(valid.checkMail(email) && logService.checkEmailExist(userID,email)) {
+				
+				System.out.println("Enter user name : ");
+				String name = sc.nextLine();
+				System.out.println("Enter mobile number :");
+				String phoneno = sc.nextLine();
+				
+				if(logService.checkCorrectMobileNumber(userID, phoneno) && logService.checkCorrectName(userID, name)) {
+					System.out.println("Please enter new password");
+					String newPass = sc.nextLine();
+					if(valid.checkPassword(newPass)) {
+						System.out.println("Enter password again");
+						String checkPass = sc.nextLine();
+						
+						if(newPass.equals(checkPass)) {
+							System.out.println(logService.forgetPassword(userID,newPass));
+						}
+						
+						else {
+							System.out.println("Password not matched");
+						}
 					}
 				}
-			}
-			else {
-				System.out.println("Invalid details!");
+				else {
+					System.out.println("Invalid details!");
+				}
 			}
 		}
+
 		else {
+			if(userID.trim().length()==0) {
+				System.out.println("User ID cannot be blank!");
+			}
+			else
 			System.out.println("User ID does not exist. Please try again!");
 		}
 		return;
@@ -144,7 +151,11 @@ public class LoginMain {
 		boolean status = false;
 		//System.out.println(logService.getDao());
 		System.out.println("Enter User ID");
-		String userID = sc.nextLine();		
+		String userID = sc.nextLine();	
+		if(userID.trim().length()==0) {
+			System.out.println("Please enter the user ID!");
+			return;
+		}
 		System.out.println("Enter Your Password");
 		String password = sc.nextLine();
 		if(logService.validateUseridAndPassword(userID, password)) {
@@ -160,10 +171,9 @@ public class LoginMain {
 
 	//Getting the choice from the user
 	private int getChoice(Scanner scan) {
-		int choice = 0;
 		System.out.println();
 		System.out.println();
-		System.out.println("******* ENTER YOU CHOICE ********");
+		
 		System.out.println("+-------------------------------+");
 		System.out.println("|       1. Login                |");
 		System.out.println("|       2. Admin Login	        |");
@@ -171,15 +181,16 @@ public class LoginMain {
 		System.out.println("|       4. Register             |");
 		//System.out.println("|       4. Exit System          |");
 		System.out.println("+-------------------------------+");
+		System.out.println("******* ENTER YOU CHOICE ********");
 		System.out.println();
 		System.out.println();
-		
-		try {
-			choice = scan.nextInt();
-		} catch (InputMismatchException e) {
-			System.out.println("Please enter numbers only!");
-			scan.nextLine();// consume the keyboard value
+		int choice = 0;
+		while((choice=valid.checkChoice())==0 || choice < 0) {
+			if(choice < 0) {
+				System.out.println("Invalid input!! Don't enter negative values.");
+			}
 		}
+		//while(!valid.checkChoice(choice));
 		return choice;
 	}
 

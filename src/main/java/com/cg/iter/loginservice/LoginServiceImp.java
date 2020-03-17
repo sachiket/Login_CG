@@ -101,6 +101,9 @@ public class LoginServiceImp implements LoginService {
 	@Override
 	public boolean validateAdminUseridAndPassword(String adminID, String password) {
 		// TODO Auto-generated method stub
+		if(!dao.validateAdminUseridAndPassword(adminID,password)) {
+			System.out.println("Incorrect Admin id or password!");
+		}
 		return dao.validateAdminUseridAndPassword(adminID,password);
 	}
 
